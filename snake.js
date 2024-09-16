@@ -24,39 +24,6 @@ let food = {
 
 let d;
 
-// Touch event for mobile
-canvas.addEventListener("touchstart", function(event) {
-    const touch = event.touches[0];
-    const touchX = touch.clientX - canvas.getBoundingClientRect().left;
-    const touchY = touch.clientY - canvas.getBoundingClientRect().top;
-
-    const snakeHead = snake[0];
-
-    const headX = snakeHead.x + box / 2;
-    const headY = snakeHead.y + box / 2;
-
-    const diffX = touchX - headX;
-    const diffY = touchY - headY;
-
-    // Move left or right based on the X difference
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 0 && d !== "LEFT") {
-            d = "RIGHT";
-        } else if (diffX < 0 && d !== "RIGHT") {
-            d = "LEFT";
-        }
-    } 
-    // Move up or down based on the Y difference
-    else {
-        if (diffY > 0 && d !== "UP") {
-            d = "DOWN";
-        } else if (diffY < 0 && d !== "DOWN") {
-            d = "UP";
-        }
-    }
-});
-
-// Keyboard event for desktop
 document.addEventListener("keydown", direction);
 
 function direction(event) {
@@ -176,4 +143,5 @@ function restartGame() {
     clearInterval(game);
     game = setInterval(draw, 100);
 }
+
 

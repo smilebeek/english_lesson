@@ -47,9 +47,48 @@ canvas {
     background-color: #c0392b;
 }
 
+/* Directional buttons layout */
+.controls {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+}
+
+.up-btn, .down-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.left-right-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin: 10px 0;
+}
+
+.control-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.control-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Show controls on mobile */
 @media (max-width: 768px) {
-    canvas {
-        width: 90%;
-        height: 90%;
+    .controls {
+        display: flex;
+    }
+}
+
+@media (min-width: 769px) {
+    .controls {
+        display: none; /* Hide the controls on desktop */
     }
 }

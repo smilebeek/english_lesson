@@ -46,3 +46,11 @@ canvas {
 .restart-btn:hover {
     background-color: #c0392b;
 }
+
+@media (max-width: 768px) {
+    canvas {
+        width: 90%;
+        height: 90%;
+    }
+}
+

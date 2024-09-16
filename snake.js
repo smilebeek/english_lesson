@@ -24,38 +24,26 @@ let food = {
 
 let d;
 
-// Handle touch event for mobile
-canvas.addEventListener("touchstart", function(event) {
-    const touch = event.touches[0];
-    const touchX = touch.clientX - canvas.getBoundingClientRect().left;
-    const touchY = touch.clientY - canvas.getBoundingClientRect().top;
+// Handle touch controls for mobile
+document.getElementById('upBtn').addEventListener('click', () => { if (d !== "DOWN") d = "UP"; });
+document.getElementById('downBtn').addEventListener('click', () => { if (d !== "UP") d = "DOWN"; });
+document.getElementById('leftBtn').addEventListener('click', () => { if (d !== "RIGHT") d = "LEFT"; });
+document.getElementById('rightBtn').addEventListener('click', () => { if (d !== "LEFT") d = "RIGHT"; });
 
-    const snakeHead = snake[0];
+// Handle keyboard controls for desktop
+document.addEventListener("keydown", direction);
 
-    const headX = snakeHead.x + box / 2;
-    const headY = snakeHead.y + box / 2;
-
-    // Calculate the direction of the tap relative to the snake head
-    const diffX = touchX - headX;
-    const diffY = touchY - headY;
-
-    // Move left or right based on the X difference
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 0 && d !== "LEFT") {
-            d = "RIGHT";
-        } else if (diffX < 0 && d !== "RIGHT") {
-            d = "LEFT";
-        }
-    } 
-    // Move up or down based on the Y difference
-    else {
-        if (diffY > 0 && d !== "UP") {
-            d = "DOWN";
-        } else if (diffY < 0 && d !== "DOWN") {
-            d = "UP";
-        }
+function direction(event) {
+    if (event.keyCode == 37 && d != "RIGHT") {
+        d = "LEFT";
+    } else if (event.keyCode == 38 && d != "DOWN") {
+        d = "UP";
+    } else if (event.keyCode == 39 && d != "LEFT") {
+        d = "RIGHT";
+    } else if (event.keyCode == 40 && d != "UP") {
+        d = "DOWN";
     }
-});
+}
 
 // Check if the snake collides with itself
 function collision(newHead, snakeArray) {
@@ -162,3 +150,4 @@ function restartGame() {
     clearInterval(game);
     game = setInterval(draw, 100);
 }
+
